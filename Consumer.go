@@ -33,6 +33,10 @@ func poolMessage(client *sqs.SQS) ([]*sqs.Message, error) {
 }
 
 func processMessage(messages []*sqs.Message) {
+	if len(messages) == 0 {
+		return
+	}
+
 	for i := range messages {
 		log.Default().Println("Message body : ", *messages[i].Body)
 		log.Default().Println("Message MD5Body: ", *messages[i].MD5OfBody)
