@@ -18,9 +18,9 @@ func poolMessage(client *sqs.SQS) ([]*sqs.Message, error) {
 			aws.String(sqs.QueueAttributeNameAll),
 		},
 		QueueUrl:            &queue,
-		MaxNumberOfMessages: aws.Int64(1),
-		VisibilityTimeout:   aws.Int64(1),
-		WaitTimeSeconds:     aws.Int64(1),
+		MaxNumberOfMessages: aws.Int64(10),
+		VisibilityTimeout:   aws.Int64(25),
+		WaitTimeSeconds:     aws.Int64(0),
 	})
 
 	if err != nil {
@@ -34,9 +34,6 @@ func poolMessage(client *sqs.SQS) ([]*sqs.Message, error) {
 
 func processMessage(messages []*sqs.Message) {
 	for i := range messages {
-		if nil == messages[i].Body {
-			continue
-		}
 		log.Default().Println("Message body : ", *messages[i].Body)
 		log.Default().Println("Message MD5Body: ", *messages[i].MD5OfBody)
 		log.Default().Println("Message ID: ", *messages[i].MessageId)

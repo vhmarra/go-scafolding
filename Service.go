@@ -1,6 +1,10 @@
 package main
 
-import "github.com/aws/aws-sdk-go/service/sqs"
+import (
+	"log"
+
+	"github.com/aws/aws-sdk-go/service/sqs"
+)
 
 func handle(sqsC *sqs.SQS) {
 	for {
@@ -9,7 +13,7 @@ func handle(sqsC *sqs.SQS) {
 			panic("Shit...")
 		}
 		if len(messages) == 0 {
-			continue
+			log.Print("No messages")
 		}
 		processMessage(messages)
 	}
