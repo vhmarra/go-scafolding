@@ -1,4 +1,4 @@
-package main
+package infra
 
 import (
 	"log"
@@ -6,7 +6,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/sqs"
 )
 
-func handle(sqsC *sqs.SQS) {
+func Handle(sqsC *sqs.SQS) {
 	for {
 		messages, err := poolMessage(sqsC)
 		if nil == messages && nil == err {

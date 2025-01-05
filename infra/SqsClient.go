@@ -1,4 +1,4 @@
-package main
+package infra
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
@@ -7,7 +7,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/sqs"
 )
 
-func createSqsClient(auth *AWSCredentials) *sqs.SQS {
+func CreateSqsClient(auth *AWSCredentials) *sqs.SQS {
 	sqsSession := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String(auth.Region),
 		Credentials: credentials.NewStaticCredentials(auth.Id, auth.Secret, auth.Token),

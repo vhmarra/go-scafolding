@@ -1,4 +1,4 @@
-package main
+package infra
 
 type AWSCredentials struct {
 	Id     string
