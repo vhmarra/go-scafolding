@@ -1,9 +1,13 @@
 package main
 
-import "go-scafolding/infra"
+import (
+	"go-scafolding/infra/adapter"
+	_ "go-scafolding/infra/adapter"
+	"go-scafolding/infra/aws"
+)
 
 func main() {
-	awsAuth := infra.AWSCredentials{
+	awsAuth := aws.AWSCredentials{
 		"localstack",
 		"localstack",
 		"localstack",
@@ -12,9 +16,9 @@ func main() {
 		"",
 	}
 
-	sqsClient := infra.CreateSqsClient(&awsAuth)
+	sqsClient := aws.CreateSqsClient(&awsAuth)
 	for {
-		go infra.Handle(sqsClient)
+		go adapter.Handle(sqsClient)
 	}
 
 }

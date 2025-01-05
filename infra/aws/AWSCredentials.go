@@ -1,4 +1,4 @@
-package infra
+package aws
 
 type AWSCredentials struct {
 	Id     string

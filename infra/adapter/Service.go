@@ -1,6 +1,7 @@
-package infra
+package adapter
 
 import (
+	_ "go-scafolding/infra/aws"
 	"log"
 
 	"github.com/aws/aws-sdk-go/service/sqs"
