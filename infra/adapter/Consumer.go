@@ -7,7 +7,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/sqs"
 )
 
-func poolMessage(client *sqs.SQS) ([]*sqs.Message, error) {
+func PoolMessage(client *sqs.SQS) ([]*sqs.Message, error) {
 	queue := "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/go-scafolding" //ENV
 
 	messages, err := client.ReceiveMessage(&sqs.ReceiveMessageInput{
@@ -32,7 +32,7 @@ func poolMessage(client *sqs.SQS) ([]*sqs.Message, error) {
 	return messages.Messages, nil
 }
 
-func processMessage(messages []*sqs.Message) {
+func ProcessMessage(messages []*sqs.Message) {
 	if len(messages) == 0 {
 		return
 	}

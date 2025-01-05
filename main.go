@@ -1,9 +1,8 @@
 package main
 
 import (
-	"go-scafolding/infra/adapter"
-	_ "go-scafolding/infra/adapter"
 	"go-scafolding/infra/aws"
+	"go-scafolding/infra/presenter"
 )
 
 func main() {
@@ -18,7 +17,7 @@ func main() {
 
 	sqsClient := aws.CreateSqsClient(&awsAuth)
 	for {
-		go adapter.Handle(sqsClient)
+		go presenter.Handle(sqsClient)
 	}
 
 }

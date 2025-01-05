@@ -1,7 +1,7 @@
-package adapter
+package presenter
 
 import (
-	_ "go-scafolding/infra/aws"
+	"go-scafolding/infra/adapter"
 	"log"
 
 	"github.com/aws/aws-sdk-go/service/sqs"
@@ -9,13 +9,13 @@ import (
 
 func Handle(sqsC *sqs.SQS) {
 	for {
-		messages, err := poolMessage(sqsC)
+		messages, err := adapter.PoolMessage(sqsC)
 		if nil == messages && nil == err {
 			panic("Shit...")
 		}
 		if len(messages) == 0 {
 			log.Print("No messages")
 		}
-		processMessage(messages)
+		adapter.ProcessMessage(messages)
 	}
 }
