@@ -6,13 +6,12 @@ import (
 )
 
 func main() {
-	awsAuth := aws.AWSCredentials{
-		"localstack",
-		"localstack",
-		"localstack",
-		"us-east-1",
-		"http://localhost:4566",
-		"",
+	awsAuth := aws.Credentials{ //nolint:govt
+		Id:     "localstack",
+		Secret: "localstack",
+		Token:  "localstack",
+		Region: "us-east-1",
+		Url:    "http://localhost:4566",
 	}
 
 	sqsClient := aws.CreateSqsClient(&awsAuth)

@@ -1,6 +1,6 @@
 package aws
 
-type AWSCredentials struct {
+type Credentials struct {
 	Id     string
 	Secret string
 	Token  string //TODO acho que nao precisa disso
